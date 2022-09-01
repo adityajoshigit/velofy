@@ -6,9 +6,9 @@ class Header extends Component {
         console.log('text = ' , label);
         return (
             <div className="header-cmp-div">
-                <h2>
+                <span>
                     {label}
-                </h2>
+                </span>
             </div>
         );
     }

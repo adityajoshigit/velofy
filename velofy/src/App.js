@@ -1,4 +1,5 @@
 import Header from './components/header';
+import Place from './components/place';
 
 function App() {
     return (
@@ -7,6 +8,13 @@ function App() {
                 <Header label='Velofy' >
                 </Header>
             </header>
+            <Place 
+                name='Notre-Dame Basilica'
+                imageLink='#'
+                description=''
+                city='Montreal'
+                country='Canada'
+            />
         </div>
     );
 }

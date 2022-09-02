@@ -5,11 +5,13 @@ class Header extends Component {
         const { label } = this.props;
         console.log('text = ' , label);
         return (
-            <div className="header-cmp-div">
-                <span>
-                    {label}
-                </span>
-            </div>
+            <header className={' container-fluid app-header ' + this.props.clsName}>
+                <div className='header-cmp-div'>
+                    <span className='fs-2'>
+                        {label}
+                    </span>
+                </div>
+            </header>
         );
     }
 }

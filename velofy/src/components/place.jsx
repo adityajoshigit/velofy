@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 class Place extends Component {
     render() { 
+
         const {
             name,
             imageLink,
@@ -11,25 +12,25 @@ class Place extends Component {
         } = this.props.placeDetails;
 
         return (
-            <div className="place-item">
-                <span className="place-name">
-                    {name}
-                </span>
+            <div className="card place-item place-card">
                 <img 
                     src={imageLink} 
                     alt="picture" 
-                    className="place-image" 
+                    className="place-image card-img-top" 
                 />
-                <p className="place-summary">
-                    {description}
-                </p>
-                <div className="place-location">
-                    <span className="place-city">
+                <div className="card-body">
+                    <h5 className="place-name card-title">
+                        {name}
+                    </h5>
+                    <p className="place-summary card-text">
+                        {description}
+                    </p>
+                    <p className="card-text place-city">
                         {city}
-                    </span>
-                    <span className="place-country">
+                    </p>
+                    <p className="card-text place-country">
                         {country}
-                    </span>
+                    </p>
                 </div>
             </div>
         );

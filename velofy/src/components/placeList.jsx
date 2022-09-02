@@ -2,27 +2,32 @@ import React, { Component } from 'react';
 import Place from './place';
 
 class PlaceList extends Component {
-    state = {  } 
     render() { 
         return (
             <div 
                 className={this.getCssClassName()}
             >
-                {this.showPlaces()}
+                <div className="row" data-masonry='{"percentPosition": true }'>
+                    { this.showPlaces() }
+                </div>
             </div>
         );
     }
 
     getCssClassName() {
-        return this.props.containerClsName || 'place-list';
+        return ' place-list container-fluid py-2' + (this.props.clsName || '');
     }
 
     showPlaces() {
-        if (this.props.places) {
-            return this.props.places.map((place, index) => {
-                return <Place   key={place.name+index}
-                                placeDetails={place}
-                                />;
+        const [ ...places ] = this.props.places;
+        if (places) {
+            return places.map((place, index) => {
+                return (
+                    <div className='col-sm-4 col-md-4 col-lg-4 py-3' 
+                        key={place.name+index}>
+                        <Place placeDetails={place} /> 
+                    </div>
+                );
             });
         }
     }

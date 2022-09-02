@@ -1,0 +1,11 @@
+{
+    "places": [
+        {
+            "name": "Old Port", 
+            "description": "Old city area of Montreal", 
+            "city": "Montreal", 
+            "country": "Canada", 
+            "imageLink": ""
+        }
+    ]
+}

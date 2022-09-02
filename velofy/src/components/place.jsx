@@ -1,40 +1,42 @@
-import React, { Component } from 'react';
-
-class Place extends Component {
-    render() { 
-
-        const {
-            name,
-            imageLink,
-            description,
-            city,
-            country
-        } = this.props.placeDetails;
-
-        return (
-            <div className="card place-item place-card">
-                <img 
-                    src={imageLink} 
-                    alt="picture" 
-                    className="place-image card-img-top" 
-                />
-                <div className="card-body">
-                    <h5 className="place-name card-title">
-                        {name}
-                    </h5>
-                    <p className="place-summary card-text">
-                        {description}
-                    </p>
-                    <p className="card-text place-city">
-                        {city}
-                    </p>
-                    <p className="card-text place-country">
-                        {country}
-                    </p>
-                </div>
-            </div>
-        );
+const Place = (
+    {
+        placeDetails
+        , onPlaceSelection
+        , cardStyle
     }
-}
+) => {
+    return (
+        <div className="card place-item place-card"
+            onClick={
+                () => onPlaceSelection()
+            }
+            style={cardStyle}
+        >
+            <img 
+                src={placeDetails.imageLink} 
+                alt="picture" 
+                className="place-image card-img-top" 
+            />
+            <div className="card-body">
+                <h5 className="place-name card-title">
+                    {placeDetails.name}
+                </h5>
+                <p className="place-summary card-text">
+                    {placeDetails.description}
+                </p>
+                <p className="card-text location">
+                    <span></span>
+                    <span className="place-city">
+                    {placeDetails.city}
+                    </span>
+                    , 
+                    <span className="place-country">
+                    {' ' + placeDetails.country}
+                    </span>
+                </p>
+            </div>
+        </div>
+    );
+};
  
 export default Place;

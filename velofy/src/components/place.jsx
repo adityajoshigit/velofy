@@ -8,8 +8,8 @@ class Place extends Component {
             description,
             city,
             country
-        } = this.props;
-        
+        } = this.props.placeDetails;
+
         return (
             <div className="place-item">
                 <span className="place-name">

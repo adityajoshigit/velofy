@@ -1,5 +1,5 @@
 import Header from './components/header';
-import Place from './components/place';
+import PlaceList from './components/placeList';
 
 function App() {
     return (
@@ -8,13 +8,7 @@ function App() {
                 <Header label='Velofy' >
                 </Header>
             </header>
-            <Place 
-                name='Notre-Dame Basilica'
-                imageLink='#'
-                description=''
-                city='Montreal'
-                country='Canada'
-            />
+            <PlaceList places={[{name: 'Old Port', description: 'Old city of Montreal', city: 'Montreal', country: 'Canada', imageLink: '#'}]} />
         </div>
     );
 }

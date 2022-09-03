@@ -27,7 +27,7 @@ const PlaceList = (
     };
 
     const [showImageFlag, setShowImageFlag] = useState(true);
-    const [showDescriptionFlag, setShowDescriptionFlag] = useState(true);
+    const [showDescriptionFlag, setShowDescriptionFlag] = useState(false);
     const [showAllFlag, setShowAllFlag] = useState(true);
     const [showAllFlagDisabled, setShowAllFlagDisabled] = useState(true);
     const [windowSize] = useState(
@@ -102,17 +102,23 @@ const PlaceList = (
 
     return (
         <div className={getCssClassNameForContainer()}>
-            <ColumnConfig 
-                numberOfColumns={numberOfColumns} 
-                availableOptions={[1,2,3,4,5]} 
-                showImage={showImageFlag}
-                showDescription={showDescriptionFlag}
-                showAll={showAllFlag}
-                showAllDisabled={showAllFlagDisabled}
-                onOptionChange={handleOptionChange} 
-                onShowDescriptionChange={handleShowDescriptionToggle}
-                onShowImageChange={handleShowImageToggle} 
-                onShowAllChange={handleShowAllToggle}/>
+            <div className='list-header  inline-flex-display row'>
+                <div className='list-heading fs-4 col-4'>
+                    My VeloBoard!
+                </div>
+                <ColumnConfig 
+                    numberOfColumns={numberOfColumns} 
+                    availableOptions={[1,2,3,4,5]} 
+                    showImage={showImageFlag}
+                    showDescription={showDescriptionFlag}
+                    showAll={showAllFlag}
+                    showAllDisabled={showAllFlagDisabled}
+                    onOptionChange={handleOptionChange} 
+                    onShowDescriptionChange={handleShowDescriptionToggle}
+                    onShowImageChange={handleShowImageToggle} 
+                    onShowAllChange={handleShowAllToggle}
+                />
+            </div>
             <div className='row'>
                 {
                     segregatePlaceLists().map((individualList, index) => {

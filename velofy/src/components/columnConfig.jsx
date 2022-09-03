@@ -13,7 +13,7 @@ const ColumnConfig = (
     }
 ) => {
     return (
-        <div className="column-config-container" style={{display: 'inline-flex', maxWidth: 'fit-content'}}>
+        <div className="column-config-container col-7" style={{display: 'inline-flex'}}>
             <div className="form-check form-switch" >
                 <input type="checkbox" 
                     className="form-check-input" 

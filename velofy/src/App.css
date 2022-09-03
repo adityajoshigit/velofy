@@ -4,3 +4,15 @@
     margin-left: 1rem;
     margin-right: 1rem;
 }
+
+.inline-flex-display {
+    display: inline-flex;
+}
+
+.fit-content-width {
+    width: fit-content;
+}
+
+.width-100-percent {
+    width: 100%;
+}

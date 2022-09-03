@@ -1,4 +1,4 @@
-import Place  from "./place";
+import PlaceCard  from "./placeCard";
 
 const TileColumn = (
     {
@@ -18,7 +18,7 @@ const TileColumn = (
             return itemsList.map((item, index) => {
                 // console.log(item);
                 return (
-                    <Place 
+                    <PlaceCard 
                         key={item.name+index} 
                         placeDetails={item} 
                         cardStyle={cardStyle}

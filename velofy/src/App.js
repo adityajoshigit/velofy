@@ -58,7 +58,8 @@ const App = (props) => {
             </Header>            
             <PlaceList
                 places={places.placeDataList}
-                defaultNumOfColumns={3} />
+                defaultNumOfColumns={3} 
+                showConfigurator={true} />
         </div>
     );
 };

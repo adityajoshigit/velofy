@@ -3,7 +3,12 @@ import ColumnConfig from './columnConfig';
 import TileColumn from './tileColumn';
 
 const PlaceList = (
-    {places, clsName, defaultNumOfColumns}
+    {
+        places, 
+        clsName, 
+        defaultNumOfColumns,
+        showConfigurator
+    }
 ) => {
 
     const bucketsPerSize = {
@@ -100,12 +105,9 @@ const PlaceList = (
         }
     }
 
-    return (
-        <div className={getCssClassNameForContainer()}>
-            <div className='list-header  inline-flex-display row'>
-                <div className='list-heading fs-4 col-4'>
-                    My VeloBoard!
-                </div>
+    const displayConfigurator = () => {
+        if(showConfigurator) {
+            return ( 
                 <ColumnConfig 
                     numberOfColumns={numberOfColumns} 
                     availableOptions={[1,2,3,4,5]} 
@@ -118,6 +120,19 @@ const PlaceList = (
                     onShowImageChange={handleShowImageToggle} 
                     onShowAllChange={handleShowAllToggle}
                 />
+            );
+        }
+    };
+
+    return (
+        <div className={getCssClassNameForContainer()}>
+            <div className='list-header  inline-flex-display row'>
+                <div className='list-heading fs-4 col-4'>
+                    My VeloBoard!
+                </div>
+                {
+                    displayConfigurator()
+                }
             </div>
             <div className='row'>
                 {

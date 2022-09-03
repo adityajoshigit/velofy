@@ -26,6 +26,10 @@ const PlaceList = (
         ''  : 12
     };
 
+    const [showImageFlag, setShowImageFlag] = useState(true);
+    const [showDescriptionFlag, setShowDescriptionFlag] = useState(true);
+    const [showAllFlag, setShowAllFlag] = useState(true);
+    const [showAllFlagDisabled, setShowAllFlagDisabled] = useState(true);
     const [windowSize] = useState(
         ((window.innerWidth < 400) && 'xxs' ) 
         || ((window.innerWidth >= 400 && window.innerWidth < 768) && 'xs')
@@ -44,7 +48,7 @@ const PlaceList = (
     };
 
     const segregatePlaceLists = () => {
-        console.log(places);
+        // console.log(places);
         
         if (places) {
             let buckets = [];
@@ -53,7 +57,7 @@ const PlaceList = (
             places.forEach((place, index) => {
                 buckets[index % numberOfColumns].push(place);
             });
-            console.log(buckets);
+            // console.log(buckets);
             return buckets;
         }
         else
@@ -61,22 +65,64 @@ const PlaceList = (
     };
 
     const handleOptionChange = (selectedValue) => {
-        console.log('selection changed to = ', selectedValue);
+        // console.log('selection changed to = ', selectedValue);
         setNumberOfColumns(selectedValue);
     };
+
+    const handleShowDescriptionToggle = (value) => {
+        if (!value) {
+            setShowAllFlag(false);
+            setShowAllFlagDisabled(false);
+        }
+        else if(showImageFlag) {
+            setShowAllFlag(true);
+        }
+        setShowDescriptionFlag(value);
+    }
+
+    const handleShowImageToggle = (value) => {
+        if (!value) {
+            setShowAllFlag(false);
+            setShowAllFlagDisabled(false);
+        }
+        else if(showDescriptionFlag) {
+            setShowAllFlag(true);
+        }
+        setShowImageFlag(value);
+    }
+
+    const handleShowAllToggle = (value) => {
+        if (value) {
+            setShowAllFlag(value);
+            setShowImageFlag(value);
+            setShowDescriptionFlag(value);
+            setShowAllFlagDisabled(true);
+        }
+    }
 
     return (
         <div className={getCssClassNameForContainer()}>
             <ColumnConfig 
                 numberOfColumns={numberOfColumns} 
                 availableOptions={[1,2,3,4,5]} 
-                onOptionChange={handleOptionChange} />
+                showImage={showImageFlag}
+                showDescription={showDescriptionFlag}
+                showAll={showAllFlag}
+                showAllDisabled={showAllFlagDisabled}
+                onOptionChange={handleOptionChange} 
+                onShowDescriptionChange={handleShowDescriptionToggle}
+                onShowImageChange={handleShowImageToggle} 
+                onShowAllChange={handleShowAllToggle}/>
             <div className='row'>
                 {
                     segregatePlaceLists().map((individualList, index) => {
                         return (
                             <div className={columnClsName} key={'list-col-num'+index}>
-                                <TileColumn itemsList={individualList} />
+                                <TileColumn itemsList={individualList} 
+                                    showImage={showImageFlag}
+                                    showDescription={showDescriptionFlag}
+                                    showAll={showAllFlag}
+                                />
                             </div>
                         );
                     })

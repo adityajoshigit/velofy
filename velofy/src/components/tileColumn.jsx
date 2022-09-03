@@ -2,7 +2,7 @@ import Place  from "./place";
 
 const TileColumn = (
     {
-        itemsList
+        itemsList, showImage, showDescription, showAll
     }
 ) => {
     const cardStyle = {
@@ -22,6 +22,9 @@ const TileColumn = (
                         key={item.name+index} 
                         placeDetails={item} 
                         cardStyle={cardStyle}
+                        showImage={showImage}
+                        showDescription={showDescription}
+                        showAll={showAll}
                     /> 
                 );
             });

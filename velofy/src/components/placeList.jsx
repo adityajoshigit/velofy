@@ -1,11 +1,12 @@
-import Place from './place';
+import { useState } from 'react';
+import ColumnConfig from './columnConfig';
 import TileColumn from './tileColumn';
 
 const PlaceList = (
-    {places, clsName}
+    {places, clsName, defaultNumOfColumns}
 ) => {
 
-    const columnsPerSize = {
+    const bucketsPerSize = {
         'xxs': 1,
         'xs': 2,
         'sm': 3,
@@ -24,27 +25,21 @@ const PlaceList = (
         'xl': 3,
         ''  : 12
     };
-    
-    const getWindowSize = () => {
-        let size = '';
-        if(window) {
-            const w = window.innerWidth;
-            if(w < 400) size = 'xxs';
-            else if(w >= 400 && w < 768) size = 'xs';
-            else if(w >= 768 && w < 992) size = 'sm';
-            else if(w >= 992 && w < 1200) size = 'md';
-            else if(w > 1200) size = 'lg';
-        }
-        console.log(size);
-        return size;
-    };
 
-    const getColumnWidthNumber = () => {
-        return columnWidthPerSize[getWindowSize()];
-    };
+    const [windowSize] = useState(
+        ((window.innerWidth < 400) && 'xxs' ) 
+        || ((window.innerWidth >= 400 && window.innerWidth < 768) && 'xs')
+        || ((window.innerWidth >= 768 && window.innerWidth < 992) && 'sm')
+        || ((window.innerWidth >= 992 && window.innerWidth < 1200) && 'md')
+        || ((window.innerWidth >= 1200) && 'lg')
+        || ''
+    );
+    const [numberOfColumns, setNumberOfColumns] = useState(defaultNumOfColumns || bucketsPerSize[windowSize]);
+    const [columnClsName, setColumnClsName] = useState(
+        defaultNumOfColumns ? 'col' : ('col-' + windowSize + '-' + columnWidthPerSize[windowSize])
+    );
 
     const getCssClassNameForContainer = () => {
-        // segregatePlaceLists();
         return ' place-list container-fluid py-2' + (clsName || '');
     };
 
@@ -53,12 +48,10 @@ const PlaceList = (
         
         if (places) {
             let buckets = [];
-            const numOfBuckets = columnsPerSize[getWindowSize()];
-            for(let i=0;i<numOfBuckets;i++)
+            for(let i=0;i<numberOfColumns;i++)
                 buckets.push([]);
-            console.log(buckets);
             places.forEach((place, index) => {
-                buckets[index % numOfBuckets].push(place);
+                buckets[index % numberOfColumns].push(place);
             });
             console.log(buckets);
             return buckets;
@@ -67,13 +60,22 @@ const PlaceList = (
             return [];
     };
 
+    const handleOptionChange = (selectedValue) => {
+        console.log('selection changed to = ', selectedValue);
+        setNumberOfColumns(selectedValue);
+    };
+
     return (
         <div className={getCssClassNameForContainer()}>
+            <ColumnConfig 
+                numberOfColumns={numberOfColumns} 
+                availableOptions={[1,2,3,4,5]} 
+                onOptionChange={handleOptionChange} />
             <div className='row'>
                 {
                     segregatePlaceLists().map((individualList, index) => {
                         return (
-                            <div className={'col-' + getWindowSize() + '-' + getColumnWidthNumber()} key={'list-col-num'+index}>
+                            <div className={columnClsName} key={'list-col-num'+index}>
                                 <TileColumn itemsList={individualList} />
                             </div>
                         );

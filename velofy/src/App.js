@@ -50,12 +50,15 @@ const App = (props) => {
             ]
         }
     );
+
+
     return (
         <div className="App container-fluid">
             <Header label='Velofy' clsName='common-page-padding row '>
-            </Header>
+            </Header>            
             <PlaceList
-                places={places.placeDataList} />
+                places={places.placeDataList}
+                defaultNumOfColumns={3} />
         </div>
     );
 };

@@ -5,6 +5,11 @@
     margin-right: 1rem;
 }
 
+.list-header {
+    padding-left: .25rem;
+    padding-right: .25rem;
+}
+
 .inline-flex-display {
     display: inline-flex;
 }
@@ -15,4 +20,10 @@
 
 .width-100-percent {
     width: 100%;
+}
+
+.place-card:hover {
+    border-color: rgb(127, 144, 150);
+    background-color: rgb(249, 249, 251);
+    cursor: pointer;
 }

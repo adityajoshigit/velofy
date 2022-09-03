@@ -28,8 +28,8 @@ const PlaceList = (
 
     const [showImageFlag, setShowImageFlag] = useState(true);
     const [showDescriptionFlag, setShowDescriptionFlag] = useState(false);
-    const [showAllFlag, setShowAllFlag] = useState(true);
-    const [showAllFlagDisabled, setShowAllFlagDisabled] = useState(true);
+    const [showAllFlag, setShowAllFlag] = useState(showDescriptionFlag && showImageFlag);
+    const [showAllFlagDisabled, setShowAllFlagDisabled] = useState(showAllFlag);
     const [windowSize] = useState(
         ((window.innerWidth < 400) && 'xxs' ) 
         || ((window.innerWidth >= 400 && window.innerWidth < 768) && 'xs')

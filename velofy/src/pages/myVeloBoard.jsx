@@ -1,4 +1,4 @@
-import PlaceList from './placeList';
+import PlaceList from '../components/placeList';
 
 const MyVeloBoard = ({
     places, 

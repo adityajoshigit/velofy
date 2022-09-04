@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import Header from './components/header';
-import PlaceList from './components/placeList';
+import MyVeloBoard from './pages/myVeloBoard';
 import './App.css';
 
 const App = (props) => {
@@ -54,9 +55,24 @@ const App = (props) => {
 
     return (
         <div className="App container-fluid">
-            <Header label='Velofy' clsName='common-page-padding row '>
-            </Header>            
-            <PlaceList
+            <div className="row">
+                <div className='col-3 header-name-panel'>
+                    <Header label='Velofy' clsName='common-page-padding row '>
+                    </Header>            
+                </div>
+                <div className="col-6 nav-bar-panel">
+                    {/* <Link className='btn btn-info' to='explore'>Explore</Link>
+                    <Link className='btn btn-primary' to='my-veloboard'>My VeloBoard</Link>
+                    <Link className='btn btn-neutral' to='my-experiences'>My Experiences</Link> */}
+                </div>
+                <div className="col-3 header-buttons-panel">
+                    <button className="btn btn-primary login-button">
+                        Login
+                    </button>
+                </div>
+            </div>
+            
+            <MyVeloBoard
                 places={places.placeDataList}
                 defaultNumOfColumns={3} 
                 showConfigurator={true} />

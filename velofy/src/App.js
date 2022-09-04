@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Header from './components/header';
-import MyVeloBoard from './pages/myVeloBoard';
 import './App.css';
+import MyVeloBoard from './pages/myVeloBoard';
+import Explore from './pages/explore';
+import MyExperiences from './pages/myExperiences';
 
 const App = (props) => {
     const [places, setPlaces] = useState(
@@ -71,11 +73,25 @@ const App = (props) => {
                     </button>
                 </div>
             </div>
-            
-            <MyVeloBoard
-                places={places.placeDataList}
-                defaultNumOfColumns={3} 
-                showConfigurator={true} />
+            <div className='row'>
+                <BrowserRouter>
+                    <Routes>
+                        <Route exact path='/my-veloboard' element={
+                            <MyVeloBoard 
+                                defaultNumOfColumns={4} 
+                                places={places.placeDataList}
+                                showConfigurator={true}
+                            />
+                        } />
+                        <Route exact path='/my-experiences' element={
+                            <MyExperiences />
+                        } />
+                        <Route exact path='/' element={
+                            <Explore />
+                        } />
+                    </Routes>
+                </BrowserRouter>
+            </div>
         </div>
     );
 };

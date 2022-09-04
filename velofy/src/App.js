@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import Header from './components/header';
 import './App.css';
 import MyVeloBoard from './pages/myVeloBoard';
@@ -50,6 +50,14 @@ const App = (props) => {
                     country: 'Canada', 
                     imageLink: 'http://site.ieee.org/pimrc-2017/files/2017/05/mount-royal-park-gomontrealtourism.com_.jpg'
                 },
+                {
+                    id: 6,
+                    name: 'Montreal Museum of Fine Arts', 
+                    description: 'A bold, innovative and caring museum that is welcoming to all disciplines such as the visual arts, history and science.', 
+                    city: 'Montreal', 
+                    country: 'Canada', 
+                    imageLink: 'https://i.smartify.org/Hv9Pyy4f7h0lWiaDiWFhgy0El8dnxE6BoV68maAVOkk/fit/1200/1200/sm/0/aHR0cHM6Ly9zMy5ldS13ZXN0LTEuYW1hem9uYXdzLmNvbS9zbWFydGlmeS1tZWRpYS92ZW51ZS1pbWFnZS9NQkFNL21lZGlhX1gxZzN3d0hPbm1Uc21YRWZvbzVlOWEuanBnP3U9MjAyMTA3MjgtMDkyNzMx.jpg'
+                },
             ]
         }
     );
@@ -63,18 +71,26 @@ const App = (props) => {
                     </Header>            
                 </div>
                 <div className="col-6 nav-bar-panel">
-                    {/* <Link className='btn btn-info' to='explore'>Explore</Link>
-                    <Link className='btn btn-primary' to='my-veloboard'>My VeloBoard</Link>
-                    <Link className='btn btn-neutral' to='my-experiences'>My Experiences</Link> */}
+                    <div className="btn-group" role="group" aria-label="Basic example">
+                        <Link className='btn btn btn-outline-primary' to='/explore'>
+                            Explore
+                        </Link>
+                        <Link className='btn btn btn-outline-warning' to='/my-veloboard'>
+                            My VeloBoard
+                        </Link>
+                        <Link className='btn btn btn-outline-success' to='/my-experiences'>
+                            My Experiences
+                        </Link>
+                    </div>
                 </div>
                 <div className="col-3 header-buttons-panel">
-                    <button className="btn btn-primary login-button">
-                        Login
+                    <button className="btn btn btn-outline-primary login-button">
+                        Logout
                     </button>
                 </div>
             </div>
             <div className='row'>
-                <BrowserRouter>
+                
                     <Routes>
                         <Route exact path='/my-veloboard' element={
                             <MyVeloBoard 
@@ -86,11 +102,14 @@ const App = (props) => {
                         <Route exact path='/my-experiences' element={
                             <MyExperiences />
                         } />
+                        <Route exact path='/explore' element={
+                            <Explore />
+                        } />
                         <Route exact path='/' element={
                             <Explore />
                         } />
                     </Routes>
-                </BrowserRouter>
+                
             </div>
         </div>
     );

@@ -62,7 +62,6 @@ const App = (props) => {
         }
     );
 
-
     return (
         <div className="App container-fluid">
             <div className="row">
@@ -75,10 +74,10 @@ const App = (props) => {
                         <Link className='btn btn btn-outline-primary' to='/explore'>
                             Explore
                         </Link>
-                        <Link className='btn btn btn-outline-warning' to='/my-veloboard'>
+                        <Link className='btn btn btn-outline-primary' to='/my-veloboard'>
                             My VeloBoard
                         </Link>
-                        <Link className='btn btn btn-outline-success' to='/my-experiences'>
+                        <Link className='btn btn btn-outline-primary' to='/my-experiences'>
                             My Experiences
                         </Link>
                     </div>

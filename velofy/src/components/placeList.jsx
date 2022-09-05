@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ColumnConfig from './columnConfig';
 import TileColumn from './tileColumn';
 
@@ -10,6 +10,10 @@ const PlaceList = (
         showConfigurator
     }
 ) => {
+
+    const getLocalItem = (itemName) => {
+        return localStorage.getItem(itemName);
+    };
 
     const bucketsPerSize = {
         'xxs': 1,
@@ -30,10 +34,28 @@ const PlaceList = (
         'xl': 3,
         ''  : 12
     };
-
-    const [showImageFlag, setShowImageFlag] = useState(true);
-    const [showDescriptionFlag, setShowDescriptionFlag] = useState(false);
-    const [showAllFlag, setShowAllFlag] = useState(showDescriptionFlag && showImageFlag);
+    
+    const [showImageFlag, setShowImageFlag] = useState(
+        getLocalItem('showImageFlag')
+        ? (
+            'true' === getLocalItem('showImageFlag')
+        )
+        : false
+    );
+    const [showDescriptionFlag, setShowDescriptionFlag] = useState(
+        getLocalItem('showDescriptionFlag')
+        ? (
+            'true' === getLocalItem('showDescriptionFlag')
+        )
+        : false
+    );
+    const [showAllFlag, setShowAllFlag] = useState(
+        getLocalItem('showAllFlag')
+        ? (
+            'true' === getLocalItem('showAllFlag')
+        )
+        : showDescriptionFlag && showImageFlag
+    );
     const [showAllFlagDisabled, setShowAllFlagDisabled] = useState(showAllFlag);
     const [windowSize] = useState(
         ((window.innerWidth < 400) && 'xxs' ) 
@@ -47,6 +69,35 @@ const PlaceList = (
     const [columnClsName, setColumnClsName] = useState(
         defaultNumOfColumns ? 'col' : ('col-' + windowSize + '-' + columnWidthPerSize[windowSize])
     );
+
+
+    useEffect(
+        () => {
+            localStorage.setItem(
+                'showImageFlag', JSON.stringify(showImageFlag)
+            );
+        },
+        [showImageFlag]
+    );
+
+    useEffect(
+        () => {
+            localStorage.setItem(
+                'showDescriptionFlag', JSON.stringify(showDescriptionFlag)
+            );
+        },
+        [showDescriptionFlag]
+    );
+
+    useEffect(
+        () => {
+            localStorage.setItem(
+                'showAllFlag', JSON.stringify(showAllFlag)
+            );
+        },
+        [showAllFlag]
+    );
+
 
     const getCssClassNameForContainer = () => {
         return ' place-list container-fluid py-2' + (clsName || '');
